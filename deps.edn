@@ -1,6 +1,5 @@
 {:paths ["src" "resources"]
  :deps  {org.clojure/clojure        {:mvn/version "1.11.0"}
-         cljplot/cljplot            {:mvn/version "0.0.2a-SNAPSHOT"}
          net.cgrand/xforms          {:mvn/version "0.19.2"}
          techascent/tech.ml.dataset {:mvn/version "6.078"}
          scicloj/tablecloth         {:mvn/version "6.076"
