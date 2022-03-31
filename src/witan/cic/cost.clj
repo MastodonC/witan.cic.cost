@@ -104,6 +104,28 @@
 
 (comment
 
+  (def cost-and-cyp-summary
+    (-> {:projection-data (projection-file->dataset "projection-episodes.csv")
+         :start-date (tick/new-date 2018 3 31)
+         :end-date (tick/new-date 2024 4 1)
+         :cost-simulation-transform-f (partial simple-cost-calculation
+                                               (tc/dataset [{:placement "Q1" :unit-cost-per-day 123}
+                                                            {:placement "Q2" :unit-cost-per-day 123}]))
+         :cpu-pool (java.util.concurrent.ForkJoinPool/commonPool)}
+        (cost-per-day)
+        (friendly-column-names)
+        (tc/group-by ["Placement"] {:result-type :as-map})))
+
+  ;; And then create charts in excel for them like this
+  (require '[witan.cic.cost.chart :as chart])
+
+  (-> cost-and-cyp-summary
+      (chart/cost-per-placement-type-per-day)
+      (chart/->workbook "cost-per-day.xlsx"))
+
+  (-> cost-and-cyp-summary
+      (chart/cyp-count-per-placement-per-day)
+      (chart/->workbook "cost-per-day.xlsx"))
 
 
   )
