@@ -81,8 +81,7 @@
     (tc/reorder-columns $ [:placement :date
                            :min-cyp :low-95-cyp :q1-cyp :median-cyp :q3-cyp :high-95-cyp :max-cyp
                            :min-cost :low-95-cost :q1-cost :median-cost :q3-cost :high-95-cost :max-cost])
-    (tc/order-by $ [:placement :date]))
-  )
+    (tc/order-by $ [:placement :date])))
 
 (defn friendly-column-names [ds]
   (tc/rename-columns ds {:placement "Placement"
