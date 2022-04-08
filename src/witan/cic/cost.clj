@@ -31,10 +31,6 @@
                              (fn [row]
                                (x/into []
                                        (map (fn [d] {:date d}))
-                                       #_(comp
-                                          (map #(-> % tick/year-month))
-                                          (x/by-key identity x/count)
-                                          (map (fn [rec] {:year-month (first rec) :days (second rec)})))
                                        (tick/range (tick/max start-date (:start row))
                                                    (tick/min end-date (:end row))))))
                             (tc/group-by [:placement :date])
